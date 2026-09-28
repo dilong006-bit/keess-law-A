@@ -110,3 +110,22 @@
 .lg-bro-cta{margin-top:20px;min-height:48px}
 .lg-res-link{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;color:var(--p4)}
 @media(max-width:640px){.lg-bro-cta{width:100%;justify-content:center}}
+
+/* ── LF7 법정 기준 ──────────────────────────────────────────────────── */
+/* 640 이하에서만 비교표를 카드형으로 바꾼다. 선택자를 #legal-standard 로 한정해
+   /content 의 같은 클래스(.difftable)에는 영향이 가지 않게 한다. */
+#legal-standard .lg-diff-m{display:none}
+#legal-standard .lawgrid{margin-top:0}
+@media(max-width:640px){
+  #legal-standard .difftable{border:none;overflow:visible}
+  #legal-standard .difftable table,#legal-standard .difftable thead{display:none}
+  #legal-standard .lg-diff-m{display:grid;gap:10px}
+}
+.lg-diff-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-1)}
+.lg-diff-t{font-size:14px;font-weight:800}
+.lg-diff-row{display:flex;gap:10px;margin-top:8px;font-size:13px;line-height:1.5}
+.lg-diff-row .k{flex:none;min-width:84px;color:var(--muted);font-weight:700}
+.lg-diff-row .v{color:#3a3a42;word-break:keep-all}
+.lg-diff-row.own .v{color:var(--p4);font-weight:700}
+/* 법정 카드 — /content 는 940 이하 2열이 끝이다. /legal 은 560 이하 1열을 더한다. */
+@media(max-width:560px){#legal-standard .lawgrid{grid-template-columns:1fr}}
