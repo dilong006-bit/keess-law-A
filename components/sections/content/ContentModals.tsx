@@ -33,11 +33,12 @@ const DOWNLOAD_ASSETS = {
   },
   legalBrochure: {
     kind: '법정 과정소개서',
-    FILE_URL: null as string | null,
+    // 자산 수령 완료(2026-09-28) — 경로가 채워지면 과정리스트와 같은 다운로드 흐름을 탄다
+    FILE_URL: '/downloads/KG에듀원_2026_법정필수교육_과정소개서.pdf' as string | null,
     FILE_NAME: 'KG에듀원_2026_법정필수교육_과정소개서.pdf',
-    FILE_SIZE_LABEL: 'PDF',
+    FILE_SIZE_LABEL: '약 6.7MB',
     title: LEGAL_COPY.resources.brochureTitle,
-    mb: 'PDF',
+    mb: 'PDF · 약 6.7MB',
     submit: LEGAL_COPY.resources.brochureCta,
     gaId: 'legal-brochure-submit' as string | undefined,
   },
