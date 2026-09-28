@@ -67,3 +67,46 @@
   .lg-card{display:grid;grid-template-columns:40% 1fr;align-items:stretch}
   .lg-card-thumb{aspect-ratio:auto;height:100%;min-height:96px}
 }
+
+/* ── LF5·LF6 자료 (카드뉴스 · 과정소개서) ───────────────────────────── */
+.lg-res{display:grid;grid-template-columns:minmax(0,480px) 1fr;gap:40px;align-items:start;margin-top:34px}
+@media(max-width:880px){.lg-res{grid-template-columns:1fr;justify-items:center}.lg-res>*{width:100%;max-width:480px}}
+
+.lg-news{width:100%;max-width:480px}
+/* 비율 박스 — 이미지가 늦게 와도 높이가 변하지 않는다(로딩 흔들림 0) */
+.lg-news-view{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:var(--r);
+  background:var(--surface);touch-action:pan-y}
+.lg-news-view:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.lg-news-track{display:flex;height:100%;transition:transform .45s var(--ease)}
+.lg-news-slide{flex:0 0 100%;height:100%}
+.lg-news-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.lg-news-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  border:1px dashed var(--line);border-radius:var(--r);background:#fff}
+.lg-news-ph .n{font-size:15px;font-weight:800;color:var(--muted)}
+.lg-news-ph .t{font-size:12.5px;color:var(--muted)}
+.lg-news-ctrl{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px}
+.lg-news-arrow{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);background:#fff;border-radius:999px;color:var(--ink);cursor:pointer;
+  transition:border-color .2s var(--ease),transform .2s var(--ease)}
+.lg-news-arrow svg{width:18px;height:18px}
+.lg-news-dots{display:flex;align-items:center;gap:2px}
+/* 점은 6px 로 보이되 탭 영역은 44px — 히트 영역만 넓히고 레이아웃은 그대로 둔다 */
+.lg-news-dot{width:22px;height:44px;padding:0;border:none;background:none;cursor:pointer;position:relative}
+.lg-news-dot::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .2s var(--ease)}
+.lg-news-dot.on::after{background:var(--p4)}
+.lg-news-dot:focus-visible{outline:2px solid var(--ink);outline-offset:-6px;border-radius:8px}
+@media (hover:hover) and (pointer:fine){
+  .lg-news-arrow:hover{border-color:var(--p4);transform:translateY(-2px)}
+  .lg-news-dot:hover::after{background:color-mix(in srgb,var(--p4) 55%,#fff)}
+}
+@media(prefers-reduced-motion:reduce){.lg-news-track{transition:none}}
+
+.lg-res-panel{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.lg-bro{width:100%;background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  padding:26px 24px;box-shadow:var(--shadow-1)}
+.lg-bro h3{font-size:17px;font-weight:800;line-height:1.45;word-break:keep-all}
+.lg-bro p{margin-top:10px;font-size:14.5px;color:var(--muted);line-height:1.7;word-break:keep-all}
+.lg-bro-cta{margin-top:20px;min-height:48px}
+.lg-res-link{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;color:var(--p4)}
+@media(max-width:640px){.lg-bro-cta{width:100%;justify-content:center}}

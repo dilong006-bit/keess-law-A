@@ -70,6 +70,10 @@ export const LEGAL_COPY = {
     brochureTitle: '(KG에듀원) 2026 법정필수교육 과정소개서',
     brochureDesc: '과정 구성, 학습 목표, 강사 정보를 한 번에 확인할 수 있습니다. 간단한 정보 입력 후 바로 받아보세요.',
     brochureCta: '과정소개서 받기',
+    // 파일 미수령 상태 안내 (확정: '자료 준비 중입니다. 입력하신 이메일로 보내드립니다.')
+    // 모달 완료 화면에서 제목·본문 두 줄로 나눠 그대로 노출한다.
+    brochurePendingTitle: '자료 준비 중입니다.',
+    brochurePendingMsg: '입력하신 이메일로 보내드립니다.',
     previewLink: '과정 미리보기로 이동',
   },
   standard: { eyebrow: 'Compliance', title: '법정 기준은 정확하게, 콘텐츠는 매년 새롭게' },

@@ -217,7 +217,7 @@ export default function Sections() {
               <p className="lead">{DOWNLOAD.lead}</p>
               <Link className="dl-cross" href={DOWNLOAD.crossLink.href}><IcShield /> {DOWNLOAD.crossLink.label}</Link>
               <div className="dl-act">
-                <button className="btn btn-ink" onClick={openDownload}><IcDown /> {DOWNLOAD.cta}</button>
+                <button className="btn btn-ink" onClick={() => openDownload()}><IcDown /> {DOWNLOAD.cta}</button>
                 <span className="dl-meta">{DOWNLOAD.meta}</span>
               </div>
             </div>

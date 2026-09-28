@@ -45,7 +45,7 @@ export default function LegalHero() {
               <a className="btn btn-ink" href="#legal-inquiry" data-ga-id="legal-hero-inquiry">
                 {hero.ctaPrimary}
               </a>
-              <button type="button" className="btn btn-glass" data-ga-id="legal-hero-brochure" onClick={() => openDownload()}>
+              <button type="button" className="btn btn-glass" data-ga-id="legal-hero-brochure" onClick={() => openDownload('legalBrochure')}>
                 {hero.ctaSecondary}
               </button>
             </div>
