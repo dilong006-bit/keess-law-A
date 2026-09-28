@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import '@/styles/content.css';
+import '@/styles/home.css';
 import '@/styles/legal.css';
 import Nav from '@/components/common/Nav';
 import RevealInit from '@/components/common/RevealInit';
@@ -9,6 +10,7 @@ import LegalHero from '@/components/legal/LegalHero';
 import LegalCourses from '@/components/legal/LegalCourses';
 import LegalResources from '@/components/legal/LegalResources';
 import LegalStandard from '@/components/legal/LegalStandard';
+import LegalInquirySection from '@/components/legal/LegalInquirySection';
 import { LEGAL_COPY } from '@/data/legal';
 
 export const metadata: Metadata = {
@@ -24,11 +26,11 @@ export default function LegalPage() {
       <ContentModalProvider>
         <main id="main" tabIndex={-1}>
           <LegalHero />
-          {/* 서브내비 항목은 구현된 섹션까지만 노출한다 — 무동작 앵커를 만들지 않기 위해서다 */}
-          <SubNav items={LEGAL_COPY.subnav.filter((s) => s.id !== 'legal-inquiry').map((s) => ({ ...s }))} />
+          <SubNav items={LEGAL_COPY.subnav.map((s) => ({ ...s }))} />
           <LegalCourses />
           <LegalResources />
           <LegalStandard />
+          <LegalInquirySection />
         </main>
       </ContentModalProvider>
     </div>
