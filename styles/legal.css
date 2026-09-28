@@ -1,0 +1,69 @@
+/* /legal — 법정필수교육 노출 A안 (기술명세서 §5·§6)
+   클래스 접두어 lg-. 색·라운드·그림자·이징은 전부 기존 토큰 경유(신규 토큰 0).
+   브레이크포인트는 Design.md 목록(1040/940/880/820/760/740/720/640/560)만 쓴다. */
+
+/* 시각적 숨김 — styles/csr.css 의 .sr-only, components.css 의 .file-live 와 동일 규칙 */
+.lg-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ── LF3 히어로 ─────────────────────────────────────────────────────── */
+/* .ct-hero 의 min-height:88vh 는 /legal 에서 쓰지 않는다 — 히어로가 카피 분량만큼만 차지하게 해
+   390px 첫 화면에 H1 과 1차 CTA 가 함께 들어오게 한다. */
+#legal-hero.ct-hero{min-height:auto;padding-top:140px;padding-bottom:84px}
+.lg-points{margin-top:22px;display:grid;gap:10px}
+.lg-points li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:rgba(255,255,255,.9);word-break:keep-all}
+.lg-points svg{flex:none;width:18px;height:18px;margin-top:2px}
+.lg-mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.lg-mosaic-tile,.lg-mosaic-more{aspect-ratio:16/9;border-radius:12px;overflow:hidden;position:relative;
+  background:rgba(255,255,255,.12)}
+.lg-mosaic-tile img{width:100%;height:100%;object-fit:cover}
+.lg-mosaic-more{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:10px 12px;
+  border:1px solid rgba(255,255,255,.28);color:#fff;font-size:12.5px;font-weight:700;word-break:keep-all}
+.lg-mosaic-more .a{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.82)}
+@media (hover:hover) and (pointer:fine){
+  .lg-mosaic-tile,.lg-mosaic-more{transition:transform .3s var(--ease)}
+  .lg-mosaic-tile:hover,.lg-mosaic-more:hover{transform:translateY(-3px)}
+}
+/* 880 이하 = .ct-hero-in 이 1열로 접히는 기존 브레이크포인트. 모자이크를 CTA 아래로 내린다. */
+@media(max-width:880px){.lg-mosaic{order:2}}
+@media(max-width:640px){
+  #legal-hero.ct-hero{padding-top:112px;padding-bottom:60px}
+  .hero-cta{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-cta .btn{width:100%;min-height:48px;justify-content:center}
+}
+
+/* 섹션 리드 — content.css 의 .axhead .lead 와 같은 값(색·크기·가독폭) */
+.lg-sec-sub{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.6;max-width:52ch;word-break:keep-all}
+
+/* ── LF4 과정 라인업 ────────────────────────────────────────────────── */
+.lg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+.lg-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--shadow-1);display:flex;flex-direction:column}
+.lg-card-thumb{position:relative;aspect-ratio:16/9;background:var(--surface);overflow:hidden}
+.lg-card-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+/* 썸네일 로드 실패 — 빈 칸 대신 과정명을 보여주고 높이는 그대로 유지한다(PRD §8) */
+.lg-card-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:12px;text-align:center;font-size:12.5px;font-weight:800;color:var(--p4);word-break:keep-all;
+  background:color-mix(in srgb,var(--p4) 8%,#fff)}
+.lg-card-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.lg-card-tags{display:flex;gap:6px;flex-wrap:wrap;min-height:20px}
+.lg-tag{font-size:11px;font-weight:800;color:var(--p4);background:color-mix(in srgb,var(--p4) 10%,#fff);
+  border-radius:6px;padding:3px 9px}
+.lg-card-title{font-size:15px;font-weight:800;line-height:1.45;word-break:keep-all;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lg-card-meta{font-size:12.5px;color:var(--muted)}
+.lg-card-cta{margin-top:auto;min-height:44px;width:100%;display:inline-flex;align-items:center;
+  justify-content:center;gap:7px}
+.lg-card-cta svg{width:14px;height:14px;flex:none}
+@media (hover:hover) and (pointer:fine){
+  .lg-card{transition:transform .3s var(--ease),box-shadow .4s var(--ease)}
+  .lg-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+}
+@media(max-width:1040px){.lg-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:880px){.lg-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+/* 560 이하 = 1열 가로형. 썸네일이 좌측 40%, 본문과 버튼이 우측에 쌓인다. */
+@media(max-width:560px){
+  .lg-grid{grid-template-columns:1fr;gap:12px}
+  .lg-card{display:grid;grid-template-columns:40% 1fr;align-items:stretch}
+  .lg-card-thumb{aspect-ratio:auto;height:100%;min-height:96px}
+}
