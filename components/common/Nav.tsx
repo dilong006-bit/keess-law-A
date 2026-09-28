@@ -235,7 +235,8 @@ export default function Nav({ current, consultHref = '#inq', forceSolid = false 
                 className={`nav-chip tone-${chip.tone}`}
                 href={chip.href}
                 data-ga-id={chip.gaId}
-                aria-label={chip.label}
+                /* 인재키움은 aria-label 을 두지 않는다 — 이름에서 'NEW' 가 빠지기 때문(기존 동작 유지) */
+                aria-label={chip.key === 'legal' ? chip.label : undefined}
                 aria-current={pathname === chip.href ? 'page' : undefined}
               >
                 {/* 스파클·NEW·shimmer 는 인재키움 전용 — 칩 2개가 동시에 반짝이면 신호가 경쟁한다(LF1) */}
