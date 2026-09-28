@@ -367,3 +367,6 @@
 /* 상세 — 강사 소속 */
 .sme-affil{color:var(--muted);font-weight:400;font-size:12.5px}
 .cdetail-head .mb span:last-child{background:rgba(255,255,255,.28)}
+
+/* #ax5 → /legal 링크 (legal-A LF9) — samplenote 아래 보조 링크 1개, 터치 44px */
+.ax5-legal-link{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;text-decoration:none}

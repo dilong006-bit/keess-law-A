@@ -4,6 +4,7 @@ import Link from 'next/link';
 import SubNav from '@/components/common/SubNav';
 import Img from '@/components/common/Img';
 import { useContentModal } from './ContentModals';
+import { LEGAL_COPY } from '@/data/legal';
 import {
   HERO, AXISNAV, AX1, AX2, AX3, AX4, AX5, AX6, DOWNLOAD, FINAL,
 } from '@/data/content';
@@ -184,6 +185,8 @@ export default function Sections() {
               <tbody>{AX5.diff.map((r) => <tr key={r[0]}><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>)}</tbody></table>
           </div>
           <p className="samplenote">{AX5.note}</p>
+          {/* 법정 전용 페이지로 — 과정 7종·미리보기·소개서는 /legal 에서 본다 */}
+          <a className="btn-line-dark ax5-legal-link" href="/legal" data-ga-id="content-to-legal">{LEGAL_COPY.contentLink}</a>
         </div>
       </section>
 
