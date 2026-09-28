@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { NAV_ITEMS, LOGO, EVENT_CHIP, type NavKey } from '@/data/nav';
+import { NAV_ITEMS, LOGO, EVENT_CHIPS, type NavKey } from '@/data/nav';
 import { useNoticeFlag } from '@/hooks/useNoticeFlag';
 import NewBadge from './NewBadge';
 import SparkleIcon from './SparkleIcon';
@@ -229,13 +229,28 @@ export default function Nav({ current, consultHref = '#inq', forceSolid = false 
             {/* 이벤트 칩 — 정식 메뉴 아님. 전 페이지 유일 캠페인 진입점이라
                 절제된 주기 모션(7s shimmer·트윙클)을 허용한다(F12′ 개정).
                 배경·텍스트·문안·크기·이동 기능은 불변, 시각 강조만 추가. */}
-            <Link className="nav-chip" href={EVENT_CHIP.href}>
-              <span className="shimmer" aria-hidden="true" />
-              <SparkleIcon />
-              {/* 신규 오픈 사실 표기 — 장식이 아니라 정보이므로 보조기술에도 노출한다 */}
-              <span className="chip-new">NEW</span>
-              {EVENT_CHIP.label}
-            </Link>
+            {EVENT_CHIPS.map((chip) => (
+              <Link
+                key={chip.key}
+                className={`nav-chip tone-${chip.tone}`}
+                href={chip.href}
+                data-ga-id={chip.gaId}
+                aria-label={chip.label}
+                aria-current={pathname === chip.href ? 'page' : undefined}
+              >
+                {/* 스파클·NEW·shimmer 는 인재키움 전용 — 칩 2개가 동시에 반짝이면 신호가 경쟁한다(LF1) */}
+                {chip.key === 'kium' && (
+                  <>
+                    <span className="shimmer" aria-hidden="true" />
+                    <SparkleIcon />
+                    <span className="chip-new">NEW</span>
+                  </>
+                )}
+                {/* 폭별 라벨 — 1041px↑ 전체, 1040px↓ 축약. 마크업은 하나, 전환은 CSS(원 소스) */}
+                <span className="chip-full">{chip.label}</span>
+                <span className="chip-short" aria-hidden="true">{chip.shortLabel}</span>
+              </Link>
+            ))}
             <a
               className="btn btn-glass nav-cta"
               href={consultHref}
@@ -282,17 +297,25 @@ export default function Nav({ current, consultHref = '#inq', forceSolid = false 
             {item.label}
           </Link>
         ))}
-        {/* 모바일 메뉴 칩 — 데스크톱 칩과 같은 신호(스파클·NEW)를 쓴다. 주기 모션은 없음 */}
-        <Link
-          className={`mmenu-chip${highlightKium ? ' is-new-hl' : ''}`}
-          href={EVENT_CHIP.href}
-          data-ga-id="drawer-kium"
-          onClick={() => setMenuOpen(false)}
-        >
-          <SparkleIcon idSuffix="-m" />
-          <span className="chip-new">NEW</span>
-          {EVENT_CHIP.label}
-        </Link>
+        {/* 모바일 메뉴 칩 — 두 칩 모두 전체 라벨·44px 타깃.
+            스파클·NEW·지목 글로우는 인재키움 전용(데스크톱과 동일 규칙). 주기 모션은 없음 */}
+        {EVENT_CHIPS.map((chip) => (
+          <Link
+            key={chip.key}
+            className={`mmenu-chip tone-${chip.tone}${chip.key === 'kium' && highlightKium ? ' is-new-hl' : ''}`}
+            href={chip.href}
+            data-ga-id={`drawer-${chip.key}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            {chip.key === 'kium' && (
+              <>
+                <SparkleIcon idSuffix="-m" />
+                <span className="chip-new">NEW</span>
+              </>
+            )}
+            {chip.label}
+          </Link>
+        ))}
         <a className="btn btn-ink" href={consultHref} onClick={onConsult}>
           <ChatIcon />
           교육 상담
